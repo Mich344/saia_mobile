@@ -121,7 +121,8 @@ Para trabajar correctamente en Visual Studio Code instalar:
 - Error Lens → Mostrar errores en línea
 - Import Cost → Tamaño de librerías
 - Material Icon Theme → Iconos de carpetas
-
+- TypeScript Toolbox → Lecutra typescript
+- JavaScript and TypeScript Nightly → Lecutra typescript
 ---
 
 # ⚠️ Buenas prácticas
