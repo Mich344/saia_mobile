@@ -1,10 +1,20 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   // NOTE: Update this to include the paths to all files that contain Nativewind classes.
-  // content: ["./App.tsx", "./components/**/*.{js,jsx,ts,tsx}"],
+  content: ["./app/**/*.{js,jsx,ts,tsx}", "./components/**/*.{js,jsx,ts,tsx}"],
   presets: [require("nativewind/preset")],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        primary: "", // Color principal de SAIA
+        complement: "#71B030", // Color complementario del SENA (Verde)
+        black: "#000000", // Color Negro textual
+        card_select: "#FF0000", // Color de alertas
+        background: "#F5F5F6", // Color de fondo mobile
+        white: "#FFFFFF", // Color Blanco Texual
+        // selection_card: "", // Seleccion de tarjeta
+      },
+    },
   },
   plugins: [],
-}
+};
