@@ -1,0 +1,12 @@
+## Correciones por hacer
+
+
+1. El INICIAR SESION no le coje la tipografia revisar la manera de arreglarlo. /////// Estado  =  (pendiente)
+
+
+/////////////////////////////////////////////////////////////////////////
+
+
+## Dependencias Instaladas 
+
+1. React Hoks Form 

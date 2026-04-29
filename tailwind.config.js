@@ -6,13 +6,18 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: "", // Color principal de SAIA
         complement: "#71B030", // Color complementario del SENA (Verde)
         black: "#000000", // Color Negro textual
         card_select: "#FF0000", // Color de alertas
         background: "#F5F5F6", // Color de fondo mobile
         white: "#FFFFFF", // Color Blanco Texual
         // selection_card: "", // Seleccion de tarjeta
+      },
+      fontFamily: {
+        calibri: ["Calibri_Regular"],
+        calibriBold: ["Calibri_Bold"],
+        calibriItalic: ["Calibri_Italic"],
+        calibriBoldItalic: ["Calibri_BoldRegular"],
       },
     },
   },
