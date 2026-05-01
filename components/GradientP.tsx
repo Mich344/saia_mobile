@@ -9,7 +9,7 @@ type ColorPrincipalProps = {
 export default function ColorGrandient({ text }: ColorPrincipalProps) {
   return (
     <View className="">
-      <Svg width="300" height="50">
+      <Svg width="100" height="50">
         <Defs>
           <LinearGradient id="grad" x1="0" y1="0" x2="1" y2="0">
             <Stop offset="0" stopColor="#42EDB5" />
@@ -19,7 +19,7 @@ export default function ColorGrandient({ text }: ColorPrincipalProps) {
 
         <Text
           fill="url(#grad)"
-          fontSize="25"
+          fontSize="24"
           fontWeight="bold"
           x="50%"
           y="35"
