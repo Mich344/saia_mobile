@@ -86,8 +86,8 @@ cada 1 trabajar sobre una rama inicial asignada dependiendo de la tarea a entreg
 
 ```
 git branch  → Visualizar ramas de trabajo.
-git checkout -d "Nombre_RAMA" → eliminar cualquier rama de trabajo.
-git checkout -D "Nombre_RAMA" → Forzar una rama para eliminarse.
+git branch -d "Nombre_RAMA" → eliminar cualquier rama de trabajo.
+git branch -D "Nombre_RAMA" → Forzar una rama para eliminarse.
 git branch name → Crear una rama de trabajo.
 git checkout name → Entrar a una rama de trabajo
 git push -u origin nombre_rama → Finalizado el trabajo solicitar subir tus cambios a la rama asignada
@@ -134,5 +134,3 @@ Para trabajar correctamente en Visual Studio Code instalar:
 - Crear Pull Requests antes de mergear
 
 ```
-
-
