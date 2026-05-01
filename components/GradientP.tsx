@@ -19,7 +19,7 @@ export default function ColorGrandient({ text }: ColorPrincipalProps) {
 
         <Text
           fill="url(#grad)"
-          fontSize="24"
+          fontSize="25"
           fontWeight="bold"
           x="50%"
           y="35"

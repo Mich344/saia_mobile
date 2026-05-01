@@ -26,8 +26,8 @@ module.exports = {
       width: {
         auto: "auto", //Tamaños para los inputs
       },
-      boxShadow: {
-        shadow: "0 0px 3px rgba(0, 0, 0, 0.3)",
+      fontWeight: {
+        font: "25px",
       },
     },
   },
