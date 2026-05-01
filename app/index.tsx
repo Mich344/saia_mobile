@@ -3,10 +3,9 @@ import { View, Image, Text, TextInput } from "react-native";
 // Librerias
 
 // Componentes
-import Input from "@/components/Inputs/Inputs";
+import Input from "@/components/Inputs";
 import ColorGrandient from "@/components/GradientP";
 import Button from "@/components/Button";
-
 import Container from "@/components/Container";
 
 export default function page() {
