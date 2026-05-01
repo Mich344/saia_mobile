@@ -4,12 +4,18 @@ import Svg, { Text, Defs, LinearGradient, Stop } from "react-native-svg"; // Vec
 
 type ColorPrincipalProps = {
   text: string;
+  fontSize?: number;
+  fontWeight: string;
 };
 
-export default function ColorGrandient({ text }: ColorPrincipalProps) {
+export default function ColorGrandient({
+  text,
+  fontSize,
+  fontWeight,
+}: ColorPrincipalProps) {
   return (
     <View className="">
-      <Svg width="100" height="50">
+      <Svg width="300" height="50">
         <Defs>
           <LinearGradient id="grad" x1="0" y1="0" x2="1" y2="0">
             <Stop offset="0" stopColor="#42EDB5" />
@@ -19,8 +25,8 @@ export default function ColorGrandient({ text }: ColorPrincipalProps) {
 
         <Text
           fill="url(#grad)"
-          fontSize="24"
-          fontWeight="bold"
+          fontSize={fontSize}
+          fontWeight={fontWeight}
           x="50%"
           y="35"
           textAnchor="middle"
