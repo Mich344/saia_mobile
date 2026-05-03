@@ -10,5 +10,7 @@ export default function RoutesLayout() {
     Calibri_Italic: require("@/assets/fonts/calibri-italic.ttf"),
   });
   if (!fontsLoaded) return null;
-  return <Stack screenOptions={{ headerShown: false }} />;
+  return (
+      <Stack screenOptions={{ headerShown: false }} />
+  );
 }
