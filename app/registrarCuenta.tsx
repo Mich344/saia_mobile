@@ -1,15 +1,21 @@
-import { View, Image, Text } from "react-native";
 
 // Librerias
+import { Link } from "expo-router";
+import { View, Image, } from "react-native";
+
+
 
 // Componentes
 import Input from "@/components/Input";
 import ColorGrandient from "@/components/GradientP";
 import Button from "@/components/Button";
 import Container from "@/components/Container";
-export default function page() {
+import InputOpcion from "@/components/InputOption";
+export default function RegistrarCuenta() {
     return (
         <Container>
+            <Link href="/"><Image style={{width:25, height:25}}
+                        source={require("@/img/left_arrow.png")}/></Link>
             <View className="flex-1">
                 <View className="items-center pt-10">
                     <Image
@@ -22,17 +28,9 @@ export default function page() {
                         fontSize={24}
                     />
                 </View>
-                {/*reemplazar input por inputOption cuando este listo*/}
-                {/*
-                    <View className="gap-8 mt-10">
-                        <InputOption
-                            placeholder="Tipo de documento *"
-                            inputMode="numeric"
-                            keyboardType="numeric"
-                        />
-                    </View>
-                */}
                 <View className="gap-8 mt-10">
+               <InputOpcion />
+
                     <Input
                         placeholder="Numero de cedula *"
                         inputMode="numeric"

@@ -25,7 +25,7 @@ const Input = ({placeholder,
       maxLength={10}
       inputMode={inputMode}
       keyboardType={keyboardType}
-      className="rounded-[12px] text-black  p-16 font-calibri shadow-soft w-auto focus:outline-complement border border-sombreado_input"
+      className="rounded-[12px] text-black  p-16 font-calibri shadow-soft w-auto focus:outline-complement border border-sombreado_input bg-white"
     />
   );
 };

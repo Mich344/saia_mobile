@@ -37,11 +37,11 @@ const Button = ({
         //w/h = tamaño fijo del boton
         //justify-center = centra verticalmente el contenido
         //active:opacity-80 = efecto al presionar
-        className={`mt-[35] w-[246px] h-[60px] justify-center active:opacity-80 paddin`}
+        className="mt-[7vh] w-[246px] h-[60px] justify-center active:opacity-80 paddin"
       >
         <Text
           //text-center -> centra horizontalmente el texto
-          className={`text-background text-center font-bold text-[18px]`}
+          className="text-background text-center font-bold text-[18px]"
         >
           {text}
         </Text>

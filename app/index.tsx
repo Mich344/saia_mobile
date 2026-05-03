@@ -9,6 +9,7 @@ import ColorGrandient from "@/components/GradientP";
 import Container from "@/components/Container";
 import Button from "@/components/Button";
 import InputPass from "@/components/InputPassword";
+import InputOpcion from "@/components/InputOption";
 
 
 export default function LandingPage() {
@@ -28,6 +29,7 @@ export default function LandingPage() {
         </View>
 
         <View className="gap-8 mt-10">
+          <InputOpcion />
           <Input
             placeholder="Numero de documento *"
             inputMode="numeric"
@@ -41,7 +43,7 @@ export default function LandingPage() {
           <Button text="Ingresar" />
         </View>
         <View className="mt-auto items-center gap-4 pb-6">
-          <Link href="/">
+          <Link href="/home">
             <ColorGrandient
               text="¿Olvidaste tu contraseña?"
               fontWeight="bold"
@@ -55,7 +57,7 @@ export default function LandingPage() {
             </Text>
 
             <Link
-              href="/registrar_cuenta"
+              href="/registrarCuenta"
               className="ml-2 text-cyan-400 font-bold"
             >
               Registra tu cuenta

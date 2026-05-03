@@ -6,6 +6,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        teal_sena: "#3DE1B9",
         complement: "#71B030", // Color complementario del SENA (Verde)
         black: "#000000", // Color Negro textual
         card_select: "#FF0000", // Color de alertas
