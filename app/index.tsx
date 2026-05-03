@@ -48,7 +48,7 @@ export default function page() {
               ¿No tienes una cuenta?
             </Text>
 
-            <Link href="/" className="ml-2 text-cyan-400 font-bold">
+            <Link href="/registrar_cuenta" className="ml-2 text-cyan-400 font-bold">
               Registra tu cuenta
             </Link>
           </View>
