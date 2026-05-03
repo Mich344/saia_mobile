@@ -10,6 +10,7 @@ interface Props extends PressableProps {
   //readonly evita que se modifique accidentalmente
   //[string, string] = 2 colores para el degradado
   color?: readonly [string, string];
+  size?: 'lg' | 'sm'; //tamaño del boton lg= grande sm = pequeño
 }
 
 const Button = ({
@@ -17,12 +18,28 @@ const Button = ({
   //valor por defecto del color
   color = ['#2EE7B3', '#32C7D3'],
   onPress,
+  size = 'lg', //tamaño por defecto lg = grande
 }: Props) => {
+
+  //estilos segun tamaño
+  const sizeStylesButton = {
+    lg: {
+      width: 246,
+      height: 60,
+      fontSize: 18,
+      borderRadius: 25,
+    },
+    sm: {
+      width: 174,
+      height: 36,
+      fontSize: 15,
+      borderRadius: 25,
+    },
+  };
+  const customSize = sizeStylesButton[size];
   return (
     //pressable maneja la interaccion del boton
-    <Pressable className="rounded-[25px] overflow-hidden" onPress={onPress}>
-
-      {/*lineargradient reemplaza un view normal para pintar el fondo degradado */}
+    <Pressable onPress={onPress}>
       <LinearGradient
         colors={color}
 
@@ -30,18 +47,30 @@ const Button = ({
         // (0,0) = izquierda, (1,0) = derecha -> horizontal
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 0 }}
-        style={{borderRadius:24}} //para que se visualice en dispositivos fisicos
+
+        //para que se visualice en dispositivos fisicos
+        style={{
+          borderRadius: customSize.borderRadius,
+          width: customSize.width,
+          height: customSize.height,
+
+        }}
+
+
         //tailwind:
         //mt-5 = margen superior
         //rounded-3xl = bordes redondeados
         //w/h = tamaño fijo del boton
         //justify-center = centra verticalmente el contenido
         //active:opacity-80 = efecto al presionar
-        className="mt-[7vh] w-[246px] h-[60px] justify-center active:opacity-80 paddin"
+        className={`mt-[35] justify-center active:opacity-70`}
       >
         <Text
           //text-center -> centra horizontalmente el texto
-          className="text-background text-center font-bold text-[18px]"
+          className="text-background text-center font-bold"
+          style={{
+            fontSize: customSize.fontSize,
+          }}
         >
           {text}
         </Text>
