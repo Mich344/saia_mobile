@@ -3,7 +3,7 @@ import { View, Image, Text } from "react-native";
 // Librerias
 
 // Componentes
-import Input from "@/components/Inputs";
+import Input from "@/components/Input";
 import ColorGrandient from "@/components/GradientP";
 import Button from "@/components/Button";
 import Container from "@/components/Container";

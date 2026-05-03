@@ -4,11 +4,14 @@ import { Link } from "expo-router";
 // Librerias
 
 // Componentes
-import Input from "@/components/Inputs";
+import Input from "@/components/Input";
 import ColorGrandient from "@/components/GradientP";
-import Button from "@/components/Button";
 import Container from "@/components/Container";
-export default function page() {
+import Button from "@/components/Button";
+import InputPass from "@/components/InputPassword";
+
+
+export default function LandingPage() {
   return (
     <Container>
       <View className="flex-1">
@@ -30,10 +33,13 @@ export default function page() {
             inputMode="numeric"
             keyboardType="numeric"
           />
-
-          <Button text="INICIAR SESIÓN" />
+          <InputPass 
+          placeholder="Contraseña *"
+          />
         </View>
-
+        <View className="items-center">
+          <Button text="Ingresar" />
+        </View>
         <View className="mt-auto items-center gap-4 pb-6">
           <Link href="/">
             <ColorGrandient
@@ -48,7 +54,10 @@ export default function page() {
               ¿No tienes una cuenta?
             </Text>
 
-            <Link href="/registrar_cuenta" className="ml-2 text-cyan-400 font-bold">
+            <Link
+              href="/registrar_cuenta"
+              className="ml-2 text-cyan-400 font-bold"
+            >
               Registra tu cuenta
             </Link>
           </View>

@@ -11,7 +11,7 @@ module.exports = {
         card_select: "#FF0000", // Color de alertas
         background: "#F5F5F6", // Color de fondo mobile
         white: "#FFFFFF",
-        sombreado_input: "#ACA9A9", // Color Blanco Texual
+        sombreado_input: "rgb(219 219 219)", // Color Blanco Texual
         // selection_card: "", // Seleccion de tarjeta
       },
       fontFamily: {

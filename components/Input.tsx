@@ -5,7 +5,7 @@ import { TextInput } from "react-native";
 
 // Se crea una interfaz para heredar propiedades al momento de requerir una clase o otra interfaz con los mismos valores
 
-interface InputProps {
+export interface InputProps {
   placeholder: string;
   value?: string;
   inputMode?: "text" | "numeric" | "email" | "tel";
@@ -13,12 +13,10 @@ interface InputProps {
 }
 
 // Input prop visualiza el campo de escritura del usuario con validaciones especificas que retornaran un valor definido al momento de llamar el componente
-const Input: React.FC<InputProps> = ({
-  placeholder,
+const Input = ({placeholder,
   value,
   inputMode,
-  keyboardType,
-}) => {
+  keyboardType,}:InputProps) => {
   // const [alerta, setAlerta] = useState("outline-complement"); HOOKS
   return (
     <TextInput
@@ -27,7 +25,7 @@ const Input: React.FC<InputProps> = ({
       maxLength={10}
       inputMode={inputMode}
       keyboardType={keyboardType}
-      className="rounded-[12px] text-black  p-16 font-calibri shadow-soft w-auto focus:outline-card_select"
+      className="rounded-[12px] text-black  p-16 font-calibri shadow-soft w-auto focus:outline-complement border border-sombreado_input"
     />
   );
 };
