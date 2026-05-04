@@ -57,7 +57,7 @@ export default function LandingPage() {
             </Text>
 
             <Link
-              href="/registrarCuenta"
+              href="/editarPerfil"//cambiar a registrarCuenta
               className="ml-2 text-cyan-400 font-bold"
             >
               Registra tu cuenta

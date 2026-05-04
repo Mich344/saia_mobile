@@ -8,15 +8,17 @@ import { TextInput } from "react-native";
 export interface InputProps {
   placeholder: string;
   value?: string;
+  disable?: boolean;
   inputMode?: "text" | "numeric" | "email" | "tel";
   keyboardType?: "default" | "email-address" | "numeric" | "phone-pad";
 }
 
 // Input prop visualiza el campo de escritura del usuario con validaciones especificas que retornaran un valor definido al momento de llamar el componente
-const Input = ({placeholder,
+const Input = ({ placeholder,
   value,
   inputMode,
-  keyboardType,}:InputProps) => {
+  keyboardType,
+  disable = false }: InputProps) => {
   // const [alerta, setAlerta] = useState("outline-complement"); HOOKS
   return (
     <TextInput
@@ -25,7 +27,15 @@ const Input = ({placeholder,
       maxLength={10}
       inputMode={inputMode}
       keyboardType={keyboardType}
-      className="rounded-[12px] text-black  p-16 font-calibri shadow-soft w-auto focus:outline-complement border border-sombreado_input bg-white"
+      editable={!disable}
+
+      
+      className={`
+        rounded-[12px] p-16 font-calibri w-auto border
+        ${disable
+          ? "bg-[#C2C2C2] text-gray-400 border-gray-300"
+          : "focus:outline-complement shadow-soft w-auto bg-white text-black border-sombreado_input"}
+      `}
     />
   );
 };
