@@ -16,10 +16,17 @@ module.exports = {
         // selection_card: "", // Seleccion de tarjeta
       },
       fontFamily: {
+        //TEXTOS
         calibri: ["Calibri_Regular"],
         calibriBold: ["Calibri_Bold"],
         calibriItalic: ["Calibri_Italic"],
         calibriBoldItalic: ["Calibri_BoldRegular"],
+        //TITULOS
+        WorkSansRegular: ["WorkSans_Regular"],
+        WorkSansBold: ["WorkSans_Bold"],
+        WorkSansExtraBold: ["WorkSans_ExtraBold"],
+        WorkSansMedium: ["WorkSans_Medium"],
+        WorkSansSemiBold: ["WorkSans_SemiBold"]
       },
       padding: {
         16: "16px", //Tamaños para los inputs
