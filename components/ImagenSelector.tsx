@@ -1,109 +1,191 @@
 import { View, Image, Pressable, ImageSourcePropType } from "react-native";
 import * as ImagePicker from "expo-image-picker";
+import css from "@/styles/StylesComponent";
 import { useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
 
 type PlaceholderType = "avatar" | "item";
 
+/*
+size:
+Tamaño de la imagen.
+
+form:
+Forma de la imagen:
+- circle
+- square
+- rounded
+
+cameraSize:
+Tamaño del icono de cámara.
+
+placeholder:
+Imagen predeterminada que se mostrará.
+
+showCameraIcon:
+Permite mostrar u ocultar el icono de cámara.
+*/
 type ImageSelectorProps = {
   size?: number;
   form?: "circle" | "square" | "rounded";
   cameraSize?: number;
-  placeholder: PlaceholderType;
+  placeholder?: PlaceholderType;
+  showCameraIcon?: boolean;
 };
 
+//funcion que genera de forma predeterminada el componente
 export default function ImageSelector({
   size = 120,
   form = "circle",
   cameraSize = 22,
   placeholder = "avatar",
+  showCameraIcon = true,
+
 }: ImageSelectorProps) {
+  /*
+  useState
+  Hook que almacena la imagen seleccionada por el usuario.
+  image:
+  Contiene la URI de la imagen.
+  setImage:
+  Función que actualiza el estado.
+  Inicialmente es null porque aún no hay imagen.
+  */
   const [image, setImage] = useState<string | null>(null);
 
   const pickImage = async () => {
-    const permission = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    /*
+    Solicita permisos de galería
+    Retorna un objeto con información del permiso.
+    */
+    const permission =
+      await ImagePicker.requestMediaLibraryPermissionsAsync();
+
+    /*
+    Validación de permisos
+    Si el usuario rechaza el permiso:
+    - Se muestra alerta
+    - Se detiene la función
+    */
     if (!permission.granted) {
       alert("Se necesitan permisos para acceder a la galeria");
       return;
     }
+
+    /*
+    --------------------------------------------------------------------------
+    | Abrir galería del dispositivo
+    --------------------------------------------------------------------------
+    | launchImageLibraryAsync abre la galería.
+    | Configuración:
+    | mediaTypes:
+    | Solo permite imágenes.
+    | quality:
+    | Calidad máxima.
+    | allowsEditing:
+    | Permite recortar la imagen.
+    | aspect:
+    | Mantiene relación 1:1 (cuadrado).
+    */
     const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       quality: 1,
       allowsEditing: true,
       aspect: [1, 1],
     });
+    /*
+    | Validar selección
+    | Si el usuario sí seleccionó una imagen:
+    | - Obtiene la URI
+    | - Guarda la imagen en el estado
+    */
     if (!result.canceled) {
       setImage(result.assets[0].uri);
     }
   };
 
-  const placeholders: Record<PlaceholderType, ImageSourcePropType> = {
+  /*
+  |--------------------------------------------------------------------------
+  | placeholders
+  |--------------------------------------------------------------------------
+  | Objeto que almacena las imágenes predeterminadas.
+  |
+  | Record:
+  | Relaciona cada tipo con una imagen.
+  |
+  | avatar -> avatar-placeholder.png
+  | item -> item-placeholder.png
+  */
+  const placeholders: Record<
+    PlaceholderType,
+    ImageSourcePropType
+  > = {
     avatar: require("../img/avatar-placeholder.png"),
     item: require("../img/item-placeholder.png"),
   };
 
+  /*
+  getBorderRadius()
+  funcion que genera el borde dinamicamente
+  
+  circle:
+  Hace la imagen completamente circular.
+  
+  rounded:
+  Bordes redondeados.
+  
+  square:
+  Bordes cuadrados.
+  */
   const getBorderRadius = () => {
     if (form === "circle") return size / 2;
-    if (form === "rounded") return 20;
+    if (form === "rounded") return 25;
     return 0;
   };
 
-  const iconBoxSize = cameraSize + 10;
-
   return (
-    <View style={{ width: size, height: size }}>
-
-      {/*imagen con sombra*/}
+    <View>
+      {/* 
+      Aplica:
+      - sombra negra
+      - borderRadius dinámico
+      */}
       <View
-        style={{
-          width: size,
-          height: size,
-          borderRadius: getBorderRadius(),
-          elevation: 6,
-          shadowColor: "#000",
-          shadowOffset: { width: 0, height: 2 },
-          shadowOpacity: 0.4,
-          shadowRadius: 6,
-          backgroundColor: "#B3B3B3",
-        }}
-      >
-        <Image
-          source={image ? { uri: image } : placeholders[placeholder]}
-          style={{
-            width: size,
-            height: size,
+        style={[
+          css.sombraNegra,
+          {
             borderRadius: getBorderRadius(),
-          }}
+          },
+        ]}
+      >
+
+        <Image
+          style={[
+            css.sombraDifuminada,
+            {
+              borderRadius: getBorderRadius(),
+              width: size,
+              height: size,
+            },
+          ]}
+          source={
+            image
+              ? { uri: image }
+              : placeholders[placeholder]
+          }
         />
       </View>
 
-      {/*icono cam*/}
-      <Pressable
-        onPress={pickImage}
-        hitSlop={20}
-        android_ripple={{ color: "#ccc", radius: iconBoxSize / 2 }}
-        style={({ pressed }) => ({
-          position: "absolute",
-          bottom: 0,
-          right: 0,
-          width: iconBoxSize,
-          height: iconBoxSize,
-          borderRadius: iconBoxSize / 2,
-          backgroundColor: pressed ? "#DDDDE0" : "#F5F5F6",
-          borderWidth: 2,
-          borderColor: "#FFFFFF",
-          alignItems: "center",
-          justifyContent: "center",
-          elevation: 4,
-          shadowColor: "#000",
-          shadowOffset: { width: 0, height: 1 },
-          shadowOpacity: 0.5,
-          shadowRadius: 3,
-        })}
-      >
-        <Ionicons name="camera-outline" size={cameraSize} color="#333" />
-      </Pressable>
-
+      {showCameraIcon && (
+        <Pressable onPress={pickImage}>
+          <Ionicons
+            className="self-end"
+            name="camera-outline"
+            size={cameraSize}
+            style={[css.iconoShadowStyle]}
+          />
+        </Pressable>
+      )}
     </View>
   );
 }

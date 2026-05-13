@@ -60,7 +60,7 @@ const RestablecerPass = () => {
         </View>
         <View className="gap-8 mt-10">
           <InputOpcion />
-          <Input placeholder="Numero de cedular *" />
+          <Input placeholder="Numero de cedular *" inputMode="numeric" />
           <View className="items-center">
             <Button text="Continuar" />
             <Text className="text-center mt-10">
