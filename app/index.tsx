@@ -1,5 +1,5 @@
 import { View, Image, Text } from "react-native";
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
 
 // Librerias
 
@@ -40,7 +40,7 @@ export default function LandingPage() {
           />
         </View>
         <View className="items-center">
-          <Button text="Ingresar" />
+          <Button text="Ingresar"  onPress={() => router.push("/home")} />
         </View>
         <View className="mt-auto items-center gap-4 pb-6">
           <Link href="/home">

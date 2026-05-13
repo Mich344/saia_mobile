@@ -35,7 +35,7 @@ const Button = ({
       >
         <View
           className="items-center justify-center"
-          
+
         >
           <Ionicons
             name={iconName}
@@ -49,11 +49,14 @@ const Button = ({
 
   //boton normal
   return (
-    <Pressable onPress={onPress}>
-      
+    <Pressable
+      onPress={onPress}
+      className="active:opacity-70"
+    >
       <LinearGradient
-        colors={color}
+        pointerEvents="none"
 
+        colors={color}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 0 }}
 
@@ -64,6 +67,7 @@ const Button = ({
         }}
 
         className="mt-[35] justify-center active:opacity-70"
+
       >
         <Text
           className="text-background text-center font-bold"
