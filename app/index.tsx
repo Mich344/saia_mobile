@@ -1,7 +1,8 @@
+// Librerias
 import { View, Image, Text } from "react-native";
 import { Link } from "expo-router";
+import { router } from "expo-router";
 
-// Librerias
 
 // Componentes
 import Input from "@/components/Input";
@@ -39,11 +40,11 @@ export default function LandingPage() {
           placeholder="Contraseña *"
           />
         </View>
-        <View className="items-center">
-          <Button text="Ingresar" />
+        <View className="items-center m-auto">
+          <Button text="Ingresar" onPress={() => router.replace("./menu/homeUser")} />
         </View>
         <View className="mt-auto items-center gap-4 pb-6">
-          <Link href="/home">
+          <Link href="/restablecerPass">
             <ColorGrandient
               text="¿Olvidaste tu contraseña?"
               fontWeight="bold"

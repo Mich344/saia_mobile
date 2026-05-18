@@ -8,6 +8,12 @@ export default function RoutesLayout() {
     Calibri_Bold: require("@/assets/fonts/calibri-bold.ttf"),
     Calibri_Regular: require("@/assets/fonts/calibri-regular.ttf"),
     Calibri_Italic: require("@/assets/fonts/calibri-italic.ttf"),
+    //
+    WorkSans_Regular: require("@/assets/fonts/WorkSans-Regular.ttf"),
+    WorkSans_Bold: require("@/assets/fonts/WorkSans-Bold.ttf"),
+    WorkSans_ExtraBold: require("@/assets/fonts/WorkSans-ExtraBold.ttf"),
+    WorkSans_Medium: require("@/assets/fonts/WorkSans-Medium.ttf"),
+    WorkSans_SemiBold: require("@/assets/fonts/WorkSans-SemiBold.ttf")
   });
   if (!fontsLoaded) return null;
   return (

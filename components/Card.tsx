@@ -9,7 +9,7 @@ type CardProp = {
 const Card = ({ img, text, onPress }: CardProp) => {
   return (
     <Pressable
-      className="w-[157px] h-[121px] bg-white rounded-[20px] items-center justify-center shadow-xl mb-5"
+      className="w-[157px] h-[121px] bg-white rounded-[20px] items-center justify-center shadow-sm mb-5 border border-sombreado_input"
       onPress={onPress}
     >
       <Image source={img} style={{ width: 50, height: 50 }} />

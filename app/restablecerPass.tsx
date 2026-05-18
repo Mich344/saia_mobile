@@ -32,14 +32,14 @@ const RestablecerPass = () => {
           />
 
           <Text
-            className="mx-10  font-calibriBoldItalic"
+            className="mx-2"
             style={{ fontSize: 25 }}
           >
             |
           </Text>
 
           <Text
-            className="mt-1 font-calibri"
+            className="mt-[5px] font-calibri"
             style={{ fontSize: 25, fontFamily: "CalibriBoldItalic" }}
           >
             SAIA
@@ -53,9 +53,9 @@ const RestablecerPass = () => {
             fontWeight="bold"
             fontSize={25}
           />
-          <Text className="mb-12 font-calibri text-center">
-            Seleccione el tipo de documento y digite el numero de
-            identificación.
+          <Text className="mb-10 font-calibri text-center" style={{ fontSize: 15 }} >
+            Seleccione el tipo de documento y digite el numero 
+            de identificación.
           </Text>
         </View>
         <View className="gap-8 mt-10">
