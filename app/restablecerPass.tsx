@@ -1,7 +1,7 @@
 // Librerias
 import { Link } from "expo-router";
 import { View, Text, Image } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 
 // Componentes
 import ColorGrandient from "@/components/GradientP";
@@ -12,6 +12,7 @@ import Container from "@/components/Container";
 import { useFonts } from "expo-font";
 
 const RestablecerPass = () => {
+  const [tipoDocumento, setTipoDocumento] = useState("");
   const [] = useFonts({
     CalibriBoldItalic: require("../assets/fonts/calibri-bold-italic.ttf"),
   });
@@ -59,7 +60,16 @@ const RestablecerPass = () => {
           </Text>
         </View>
         <View className="gap-8 mt-10">
-          <InputOpcion />
+          <InputOpcion
+            placeholder="Tipo de documento *"
+            opciones={[
+              "Cédula de ciudadanía",
+              "Tarjeta de identidad",
+              "Cédula de extranjería",
+              "PPT",
+            ]}
+            onSelect={(val) => setTipoDocumento(val)}
+          />
           <Input placeholder="Numero de cedular *" inputMode="numeric" />
           <View className="items-center">
             <Button text="Continuar" />

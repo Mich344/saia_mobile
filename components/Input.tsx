@@ -1,42 +1,53 @@
-import { useState } from "react";
 import React from "react";
-import { TextInput } from "react-native";
-// import cssPerzonalizado from "@/styles/StylesComponent";
-
-// Se crea una interfaz para heredar propiedades al momento de requerir una clase o otra interfaz con los mismos valores
+import { View, TextInput } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import css from "@/styles/StylesComponent";
 
 export interface InputProps {
   placeholder: string;
   value?: string;
+  onChangeText?: (text: string) => void;
   disable?: boolean;
   inputMode?: "text" | "numeric" | "email" | "tel";
   keyboardType?: "default" | "email-address" | "numeric" | "phone-pad";
+  iconName?: keyof typeof Ionicons.glyphMap;
+  maxLength?: number;
 }
 
-// Input prop visualiza el campo de escritura del usuario con validaciones especificas que retornaran un valor definido al momento de llamar el componente
-const Input = ({ placeholder,
+const Input = ({
+  placeholder,
   value,
+  onChangeText,
   inputMode,
   keyboardType,
-  disable = false }: InputProps) => {
-  // const [alerta, setAlerta] = useState("outline-complement"); HOOKS
+  disable = false,
+  iconName = "person-outline",
+  maxLength,
+}: InputProps) => {
   return (
-    <TextInput
-      placeholder={placeholder}
-      value={value}
-      maxLength={10}
-      inputMode={inputMode}
-      keyboardType={keyboardType}
-      editable={!disable}
-
-      
-      className={`
-        rounded-[12px] p-16 font-calibri w-auto border
-        ${disable
-          ? "bg-[#C2C2C2] text-gray-400 border-gray-300"
-          : "focus:outline-complement shadow-soft w-auto bg-white text-black border-sombreado_input"}
-      `}
-    />
+    <View
+      className={`flex-row items-center rounded-2xl px-4 py-3 ${
+        disable ? "bg-input-disabled" : "bg-input-bg"
+      }`}
+    >
+      <Ionicons
+        name={iconName}
+        size={22}
+        color="#ABABAB"
+        style={css.inputIconMargin}
+      />
+      <TextInput
+        placeholder={placeholder}
+        placeholderTextColor="#ABABAB"
+        value={value}
+        onChangeText={onChangeText}
+        inputMode={inputMode}
+        keyboardType={keyboardType}
+        editable={!disable}
+        maxLength={maxLength}
+        className="flex-1 text-[15] text-black font-calibri"
+      />
+    </View>
   );
 };
 

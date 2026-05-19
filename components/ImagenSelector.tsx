@@ -1,4 +1,4 @@
-import { View, Image, Pressable, ImageSourcePropType } from "react-native";
+import { View, Image, Pressable, ImageSourcePropType, Text } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import css from "@/styles/StylesComponent";
 import { useState } from "react";
@@ -31,6 +31,18 @@ type ImageSelectorProps = {
   cameraSize?: number;
   placeholder?: PlaceholderType;
   showCameraIcon?: boolean;
+  // Muestra u oculta la sombra de la imagen (por defecto true)
+  showShadow?: boolean;
+  /*
+  mode:
+  - "default" → comportamiento original (imagen con sombra + ícono cámara)
+  - "upload"  → recuadro con borde, imagen centrada y botón "Cargar Imagen" abajo
+  */
+  mode?: "default" | "upload";
+  // Ancho del recuadro upload (solo aplica en mode="upload")
+  uploadWidth?: number;
+  // Alto del recuadro upload (solo aplica en mode="upload")
+  uploadHeight?: number;
 };
 
 //funcion que genera de forma predeterminada el componente
@@ -40,7 +52,10 @@ export default function ImageSelector({
   cameraSize = 22,
   placeholder = "avatar",
   showCameraIcon = true,
-
+  showShadow = true,
+  mode = "default",
+  uploadWidth = 140,
+  uploadHeight = 150,
 }: ImageSelectorProps) {
   /*
   useState
@@ -145,46 +160,75 @@ export default function ImageSelector({
 
   return (
     <View>
-      {/* 
-      Aplica:
-      - sombra negra
-      - borderRadius dinámico
-      */}
-      <View
-        style={[
-          css.sombraNegra,
-          {
-            borderRadius: getBorderRadius(),
-          },
-        ]}
-      >
-
-        <Image
-          style={[
-            css.sombraDifuminada,
-            {
-              borderRadius: getBorderRadius(),
-              width: size,
-              height: size,
-            },
-          ]}
-          source={
-            image
-              ? { uri: image }
-              : placeholders[placeholder]
-          }
-        />
-      </View>
-
-      {showCameraIcon && (
+      {/* ── Modo upload: recuadro con borde + imagen grande + texto abajo ── */}
+      {mode === "upload" ? (
         <Pressable onPress={pickImage}>
-          <Ionicons
-            className="self-end"
-            name="camera-outline"
-            size={cameraSize}
-            style={[css.iconoShadowStyle]}
-          />
+          <View
+            style={[
+              css.imagenSelectorUpload,
+              { width: uploadWidth, height: uploadHeight },
+            ]}
+          >
+            {/* Imagen ocupa la parte superior del recuadro */}
+            <Image
+              style={{
+                width: uploadWidth - 16,
+                height: uploadHeight * 0.65,
+              }}
+              source={image ? { uri: image } : placeholders[placeholder]}
+              resizeMode="contain"
+            />
+
+            {/* Separador */}
+            <View className="w-full h-px bg-[#EBEBEB] mt-2" />
+
+            {/* Texto "Cambiar Imagen" centrado abajo */}
+            <View className="items-center mt-2">
+              <View className="flex-row items-center gap-2">
+                <Ionicons name="cloud-upload-outline" size={22} color="#3DE1B9" />
+                <Text className="text-teal-sena text-[16] font-bold">
+                  {image ? "Cambiar Imagen" : "Cargar Imagen"}
+                </Text>
+              </View>
+              <Text className="text-[#ABABAB] text-[12] mt-0.5">
+                PNG, JPG Hasta 5MB
+              </Text>
+            </View>
+          </View>
         </Pressable>
+      ) : (
+        /* ── Modo default: comportamiento original ── */
+        <View>
+          <View
+            style={[
+              showShadow ? css.sombraNegra : { backgroundColor: "#fff" },
+              { borderRadius: getBorderRadius() },
+            ]}
+          >
+            <Image
+              style={[
+                showShadow ? css.sombraDifuminada : {},
+                {
+                  borderRadius: getBorderRadius(),
+                  width: size,
+                  height: size,
+                },
+              ]}
+              source={image ? { uri: image } : placeholders[placeholder]}
+            />
+          </View>
+
+          {showCameraIcon && (
+            <Pressable onPress={pickImage}>
+              <Ionicons
+                className="self-end"
+                name="camera-outline"
+                size={cameraSize}
+                style={[css.iconoShadowStyle]}
+              />
+            </Pressable>
+          )}
+        </View>
       )}
     </View>
   );

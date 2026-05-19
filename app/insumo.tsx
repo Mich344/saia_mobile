@@ -4,6 +4,7 @@ import Container from '@/components/Container';
 import ColorGrandient from '@/components/GradientP';
 import SearchBar from '@/components/SearchBar';
 import Button from '@/components/Button';
+import { router } from 'expo-router';
 
 export default function RegistrarInsumo() {
     return (
@@ -32,6 +33,7 @@ export default function RegistrarInsumo() {
                             iconSize={60}
                             iconName='add-circle'
                             iconColor='#3DE1B9'//3DE1B9
+                            onPress={() => router.push("/crearInsumo")}
                         />
                     </View>
 

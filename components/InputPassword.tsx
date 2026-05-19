@@ -1,30 +1,53 @@
+import React, { useState } from "react";
+import { View, TextInput, Pressable } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import css from "@/styles/StylesComponent";
 
-// Librerias
-
-import React from "react"
-import { Pressable, TextInput, Text } from "react-native"
-import { useState } from "react"
-
-// Componentes
-
-import { InputProps } from "./Input"
-
-interface PassProp extends InputProps {
-seguridad?: boolean
+interface PassProp {
+  placeholder?: string;
+  value?: string;
+  onChangeText?: (text: string) => void;
+  disable?: boolean;
 }
 
-const InputPass = ({seguridad, placeholder, value }: PassProp) => {
-    const [mostrar, setMostrar] = useState();
-return (
-    <TextInput
-      placeholder={placeholder}
-      value={value}
-      secureTextEntry = {seguridad = true}
-      className="rounded-[12px] text-black  p-16 font-calibri shadow-soft w-auto focus:outline-complement border border-sombreado_input bg-white"
-    />
-     
-    
+const InputPass = ({
+  placeholder = "Contraseña *",
+  value,
+  onChangeText,
+  disable = false,
+}: PassProp) => {
+  const [visible, setVisible] = useState(false);
+
+  return (
+    <View
+      className={`flex-row items-center rounded-2xl px-4 py-3 ${
+        disable ? "bg-input-disabled" : "bg-input-bg"
+      }`}
+    >
+      <Ionicons
+        name="lock-closed-outline"
+        size={22}
+        color="#ABABAB"
+        style={css.inputIconMargin}
+      />
+      <TextInput
+        placeholder={placeholder}
+        placeholderTextColor="#ABABAB"
+        value={value}
+        onChangeText={onChangeText}
+        secureTextEntry={!visible}
+        editable={!disable}
+        className="flex-1 text-[15] text-black font-calibri"
+      />
+      <Pressable onPress={() => setVisible((v) => !v)} className="ml-2">
+        <Ionicons
+          name={visible ? "eye-outline" : "eye-off-outline"}
+          size={22}
+          color="#ABABAB"
+        />
+      </Pressable>
+    </View>
   );
-}
+};
 
 export default InputPass;
