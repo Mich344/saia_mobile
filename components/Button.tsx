@@ -10,6 +10,7 @@ interface Props extends PressableProps {
   //readonly evita que se modifique accidentalmente
   //[string, string] = 2 colores para el degradado
   color?: readonly [string, string];
+  disable?: boolean
   size?: 'lg' | 'sm'; //tamaño del boton lg= grande sm = pequeño
 }
 
@@ -18,6 +19,7 @@ const Button = ({
   //valor por defecto del color
   color = ['#2EE7B3', '#32C7D3'],
   onPress,
+  disable,
   size = 'lg', //tamaño por defecto lg = grande
 }: Props) => {
 
@@ -39,7 +41,7 @@ const Button = ({
   const customSize = sizeStylesButton[size];
   return (
     //pressable maneja la interaccion del boton
-    <Pressable onPress={onPress}>
+    <Pressable onPress={onPress} disabled={disable}>
       <LinearGradient
         colors={color}
 

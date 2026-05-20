@@ -2,7 +2,7 @@
 import { View, Image, Text } from "react-native";
 import { Link } from "expo-router";
 import { router } from "expo-router";
-
+import { useState } from "react";
 
 // Componentes
 import Input from "@/components/Input";
@@ -11,9 +11,34 @@ import Container from "@/components/Container";
 import Button from "@/components/Button";
 import InputPass from "@/components/InputPassword";
 import InputOpcion from "@/components/InputOption";
-
-
 export default function LandingPage() {
+  // Variables & Estados de la interface //
+
+  const [documento, setDocumento] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(false);
+  const [disable, setDisable] = useState(true);
+
+  let usuario = {
+    documento: "1234567890",
+    password: "patito123",
+  };
+
+  // Variables & Estados de la interface //
+
+  const validacion = () => {
+    if (documento === usuario.documento || password === usuario.password) {
+      return router.replace("./menu/homeUser");
+    } else if (!documento || !password) {
+      setError(true);
+      alert("Rellena todos los datos");
+      setDisable(false);
+    } else {
+      alert("Crendenciales incorrectas");
+      setError(true);
+
+    }
+  };
   return (
     <Container>
       <View className="flex-1">
@@ -34,14 +59,21 @@ export default function LandingPage() {
           <Input
             placeholder="Numero de documento *"
             inputMode="numeric"
+            error={error}
             keyboardType="numeric"
+            onChangeText={(number) => {
+              setDocumento(number);
+              setError(false);
+            }}
           />
-          <InputPass 
-          placeholder="Contraseña *"
+          <InputPass
+            placeholder="Contraseña *"
+            onChangeText={setPassword}
+            error={error}
           />
         </View>
         <View className="items-center m-auto">
-          <Button text="Ingresar" onPress={() => router.replace("./menu/homeUser")} />
+          <Button text="Ingresar" onPress={validacion} disable={!documento || !password}  />
         </View>
         <View className="mt-auto items-center gap-4 pb-6">
           <Link href="/restablecerPass">
