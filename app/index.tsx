@@ -1,8 +1,7 @@
 // Librerias
 import { View, Image, Text } from "react-native";
-import { Link } from "expo-router";
-import { router } from "expo-router";
 import { useState } from "react";
+import { Link, router } from "expo-router";
 
 // Componentes
 import Input from "@/components/Input";
@@ -11,13 +10,21 @@ import Container from "@/components/Container";
 import Button from "@/components/Button";
 import InputPass from "@/components/InputPassword";
 import InputOpcion from "@/components/InputOption";
+
 export default function LandingPage() {
+
   // Variables & Estados de la interface //
 
   const [documento, setDocumento] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
   const [disable, setDisable] = useState(true);
+
+  //////
+
+  const [tipoDocumento, setTipoDocumento] = useState("");
+  const [numeroDocumento, setNumeroDocumento] = useState("");
+  const [contrasena, setContrasena] = useState("");
 
   let usuario = {
     documento: "1234567890",
@@ -39,9 +46,10 @@ export default function LandingPage() {
 
     }
   };
-  return (
-    <Container>
-      <View className="flex-1">
+
+    <View className="flex-1 bg-[#E2EDED] mb-20">
+      <Container>
+        {/* Logo */}
         <View className="items-center pt-10">
           <Image
             className="w-[150px] h-[163px]"
@@ -54,8 +62,18 @@ export default function LandingPage() {
           />
         </View>
 
-        <View className="gap-8 mt-10">
-          <InputOpcion />
+        <View className="gap-5 mt-10">
+          <InputOpcion
+            placeholder="Tipo de documento *"
+            placeholderColor="#ABABAB"
+            opciones={[
+              "Cédula de ciudadanía",
+              "Tarjeta de identidad",
+              "Cédula de extranjería",
+              "PPT",
+            ]}
+            onSelect={(val) => setTipoDocumento(val)}
+          />
           <Input
             placeholder="Numero de documento *"
             inputMode="numeric"
@@ -75,29 +93,26 @@ export default function LandingPage() {
         <View className="items-center m-auto">
           <Button text="Ingresar" onPress={validacion} disable={!documento || !password}  />
         </View>
-        <View className="mt-auto items-center gap-4 pb-6">
-          <Link href="/restablecerPass">
-            <ColorGrandient
-              text="¿Olvidaste tu contraseña?"
-              fontWeight="bold"
-              fontSize={13}
-            />
-          </Link>
+        {/* Links inferiores */}
+        <View className="mt-20 items-center gap-2 pb-8">
 
-          <View className="flex-row items-center justify-center">
-            <Text className="font-bold text-gray-500">
-              ¿No tienes una cuenta?
+          {/* ¿No recuerdas tu contraseña? */}
+          <Text className="text-[13] text-gray-500 text-center">
+            ¿No recuerdas tu contraseña?{" "}
+            <Text className="text-[13] font-bold text-teal-sena" onPress={() => router.push("/restablecerPass")}>
+              Restablecer
             </Text>
+          </Text>
 
-            <Link
-              href="/registrarCuenta"
-              className="ml-2 text-cyan-400 font-bold"
-            >
-              Registra tu cuenta
-            </Link>
-          </View>
+          {/* ¿Tu cuenta está inactiva? */}
+          <Text className="text-[13] text-gray-500 text-center mt-2">
+            ¿Tu cuenta está inactiva?{" "}
+            <Text className="text-[13] font-bold text-teal-sena" onPress={() => router.push("/home")}>
+              Más información
+            </Text>
+          </Text>
+
         </View>
-      </View>
-    </Container>
-  );
+      </Container>
+    </View>
 }

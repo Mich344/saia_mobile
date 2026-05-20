@@ -9,7 +9,7 @@ type ContainerProps = {
 export default function Container({ children }: ContainerProps) {
   return (
     <SafeAreaView className="flex-1 bg-white" >
-      <View className="flex-1 w-full p-4 ">{children}</View>
+      <View className="flex-1 w-full px-6 py-4">{children}</View>
     </SafeAreaView>
   );
 }
